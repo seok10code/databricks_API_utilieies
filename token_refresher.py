@@ -1,3 +1,5 @@
+# Key vault 토큰 관리
+
 
 class TokenRefresher(DatabricksAPIBase):
     def list_tokens(self):
@@ -52,7 +54,7 @@ class TokenRefresher(DatabricksAPIBase):
 
         return result
 
-    def renew_secrets(self):
+    def refresh_expiring_tokens(self):
         result = []
         now = datetime.now()
         secret_list = self.get_secret_info()
