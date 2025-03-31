@@ -23,21 +23,14 @@ A lightweight and modular utility package for interacting with the Databricks RE
 databricks_utils/
 
 ├── base.py                   # Core request logic
-
 ├── notebook_owner_manager.py # Manages notebook ownership
-
 ├── sql_owner_manager.py      # Manages query/dashboard/alert ownership
-
 ├── notebook_migrator.py      # Manages notebook copying/migration
-
 ├── token_refresher.py        # Manages token rotation and secret updates
-
 └── __init__.py               # Easy import entry point
 
 
 
-
----
 
 
 --
@@ -62,8 +55,3 @@ refresher.renew_secrets()
 --
 
 
-
-📌 Requirements
-Python 3.7+
-requests
-pyspark (for token/secrets and dataframe-related utilities)
