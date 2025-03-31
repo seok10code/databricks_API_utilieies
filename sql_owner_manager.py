@@ -1,6 +1,8 @@
+# 쿼리, 알림, 대쉬보드 오너 변경
+
 
 class SQLOwnerManager(DatabricksAPIBase):
-    def get_list_api(self, object_type, page_size=20):
+    def get_list(self, object_type, page_size=20):
         if object_type not in ["alerts", "queries"]:
             endpoint = f"/api/2.0/preview/sql/{object_type}"
         else:
@@ -120,7 +122,7 @@ class SQLOwnerManager(DatabricksAPIBase):
             return None
 
     def update_owner(self, df, object_type, owner_to, owner_from="all"):
-        df_lst = self.get_list_api(object_type)
+        df_lst = self.get_list(object_type)
         if df_lst is None:
             print("오브젝트 리스트 불러오기 실패")
             return None
