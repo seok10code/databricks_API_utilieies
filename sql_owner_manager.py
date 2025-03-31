@@ -1,5 +1,5 @@
 # 쿼리, 알림, 대쉬보드 오너 변경
-
+from .base import DatabricksAPIBase
 
 class SQLOwnerManager(DatabricksAPIBase):
     def get_list(self, object_type, page_size=20):
