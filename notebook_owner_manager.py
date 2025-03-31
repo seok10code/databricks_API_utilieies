@@ -1,5 +1,5 @@
 # 노트북 오너 변경
-
+from .base import DatabricksAPIBase
 
 class NotebookOwnerManager(DatabricksAPIBase):
     def create_directory(self, path):
