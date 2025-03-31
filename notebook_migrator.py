@@ -1,3 +1,6 @@
+# 디렉토리 아래 존재하는 노트북 전체 복사
+
+
 class NotebookMigrator(DatabricksAPIBase):
     def create_directory(self, path):
         result = self._post("/api/2.0/workspace/mkdirs", {"path": path})
