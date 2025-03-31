@@ -1,12 +1,15 @@
+# 노트북 오너 변경
+
+
 class NotebookOwnerManager(DatabricksAPIBase):
     def create_directory(self, path):
         return True if self._post("/api/2.0/workspace/mkdirs", {"path": path}) else None
 
-    def export_notebook_api(self, source_path, export_format="DBC"):
+    def export_notebook(self, source_path, export_format="DBC"):
         result = self._get("/api/2.0/workspace/export", params={"path": source_path, "format": export_format})
         return result.get("content") if result else None
 
-    def import_notebook_api(self, target_path, base64_content, export_format="DBC"):
+    def import_notebook(self, target_path, base64_content, export_format="DBC"):
         if base64_content is None:
             return None
 
@@ -19,14 +22,14 @@ class NotebookOwnerManager(DatabricksAPIBase):
         }
         return True if self._post("/api/2.0/workspace/import", data) else None
 
-    def delete_notebook_api(self, target_path, recursive=False):
+    def delete_notebook(self, target_path, recursive=False):
         result = self._post("/api/2.0/workspace/delete", {"path": target_path, "recursive": recursive})
         if result:
             print(f"노트북 {target_path} 삭제 완료")
             return True
         return None
 
-    def get_list_api(self, notebook_path):
+    def get_list(self, notebook_path):
         result = self._get("/api/2.0/workspace/list", params={"path": notebook_path})
         return result.get("objects", []) if result else None
 
@@ -47,13 +50,13 @@ class NotebookOwnerManager(DatabricksAPIBase):
             print(f"백업 생성 중 오류 발생: {e}")
             return None
 
-    def owner_change_method(self, source_path, export_format="DBC", backup=True):
+    def owner_change(self, source_path, export_format="DBC", backup=True):
         prefix_check = source_path.split('/')[-1]
         if prefix_check.startswith("backup_") and backup:
             print("이미 백업된 파일이 존재합니다. 소유자 변경 중단.")
             return None
 
-        base64_content = self.export_notebook_api(source_path, export_format)
+        base64_content = self.export_notebook(source_path, export_format)
         if base64_content is None:
             print("노트북 Export 실패. 소유자 변경 중단.")
             return None
@@ -65,12 +68,12 @@ class NotebookOwnerManager(DatabricksAPIBase):
         print(f"기존 노트북을 백업 파일로 변경: {backup_path}")
 
         if not backup:
-            if self.delete_notebook_api(backup_path) is None:
+            if self.delete_notebook(backup_path) is None:
                 print(f"백업된 파일 {backup_path} 삭제 실패")
                 return None
             print(f"백업된 파일 {backup_path} 삭제 완료")
 
-        import_result = self.import_notebook_api(source_path, base64_content, export_format)
+        import_result = self.import_notebook(source_path, base64_content, export_format)
         if import_result:
             print(f"새 소유자로 {source_path} 에 노트북 복사 완료")
             return True
