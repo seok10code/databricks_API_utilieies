@@ -1,5 +1,5 @@
 # 디렉토리 아래 존재하는 노트북 전체 복사
-
+from .base import DatabricksAPIBase
 
 class NotebookMigrator(DatabricksAPIBase):
     def create_directory(self, path):
