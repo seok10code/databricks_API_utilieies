@@ -11,7 +11,11 @@ A lightweight and modular utility package for interacting with the Databricks RE
 - 🧾 **SQLOwnerManager**: Change ownership of SQL queries, dashboards, and alerts
 - 📁 **NotebookMigrator**: Export, import, and migrate notebooks between folders
 
+
+
 ---
+
+
 
 ## 📁 Project Structure
 
@@ -32,7 +36,10 @@ databricks_utils/
 
 
 
+
 ---
+
+
 
 ## 🚀 Installation
 
@@ -41,7 +48,11 @@ cd databricks_utils
 # Use it directly or install with pip (optional)
 pip install -e .
 
+
+
 --
+
+
 
 ## 🛠️ Usage
 from databricks_utils import NotebookOwnerManager, TokenRefresher
@@ -55,6 +66,10 @@ manager.owner_change_method("/Users/alice/my_notebook")
 # Refresh expiring tokens
 refresher = TokenRefresher("https://your-databricks-instance", token="abc123")
 refresher.renew_secrets()
+
+
+
+--
 
 
 
