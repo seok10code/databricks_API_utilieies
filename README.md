@@ -17,6 +17,7 @@ A lightweight and modular utility package for interacting with the Databricks RE
 
 
 databricks_utils/
+
 ├── base.py                   # Core request logic
 
 ├── notebook_owner_manager.py # Manages notebook ownership
