@@ -40,16 +40,6 @@ databricks_utils/
 ---
 
 
-
-## 🚀 Installation
-
-git clone https://github.com/yourusername/databricks_utils.git
-cd databricks_utils
-# Use it directly or install with pip (optional)
-pip install -e .
-
-
-
 --
 
 
