@@ -1,3 +1,11 @@
+# 디렉토리 아래 존재하는 노트북 전체 복사 (폴더 트리 반영)
+"""
+CLASS NAME: NotebookMigrator  
+DESCRIPTION: Databricks Workspace의 디렉토리 구조와 노트북을 전체 복사(migration)하는 기능을 수행
+
+INHERITS: NotebookOpsBase
+"""
+
 class NotebookMigrator(NotebookOpsBase):
     """
     METHOD NAME: getDirectoryList
@@ -89,11 +97,3 @@ class NotebookMigrator(NotebookOpsBase):
                 self.migrate(row['path'], row['path'].replace(source_path, target_path), EXPORT_FORMAT)
 
         return True
-
-
-# Key vault 토큰 관리
-"""
-CLASS NAME: TokenRefresher  
-DESCRIPTION: Databricks API를 통해 토큰 및 Secret Scope 관리, 만료 예정 토큰 자동 갱신 기능을 제공  
-INHERITS: DatabricksAPIBase
-"""
