@@ -1,3 +1,19 @@
+# API BASE
+
+import base64
+import requests
+import json
+import os
+from pyspark.sql.functions import *
+from pyspark.sql.types import *
+from datetime import datetime, timedelta
+
+
+"""
+CLASS NAME: DatabricksAPIBase
+DESCRIPTION: Databricks API를 호출할 때 사용되는 Databricks API 주소와 token을 저장하는 클래스
+             WORKSPACE와 관련된 API를 사용하기 위해 반복되는 header, get, post 관련 코드를 모듈화 했습니다. 
+"""
 class DatabricksAPIBase:
     """
     CONSTRUCTOR  
@@ -60,14 +76,3 @@ class DatabricksAPIBase:
         except requests.exceptions.RequestException as e:
             print(f"POST 오류: {e}")
             return None
-
-
-"""
-CLASS NAME: NotebookOpsBase  
-DESCRIPTION:  
-Databricks Workspace에서 노트북을 다루는 기본 작업들을 모은 베이스 클래스입니다.  
-디렉토리 생성, 노트북 Export/Import, 삭제, 목록 조회 등 공통 기능을 제공합니다.  
-다른 클래스에서 상속하여 재사용됩니다.
-
-INHERITS: DatabricksAPIBase
-"""
