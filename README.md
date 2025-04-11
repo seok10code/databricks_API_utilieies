@@ -11,52 +11,55 @@ A lightweight and modular utility package for interacting with the Databricks RE
 - 🧾 **SQLOwnerManager**: Change ownership of SQL queries, dashboards, and alerts
 - 📁 **NotebookMigrator**: Export, import, and migrate notebooks between folders
 
-
-
 ---
-
-
 
 ## 📁 Project Structure
 
-
+```
 databricks_utils/
+├── TokenRefresher.py
+├── NotebookOwnerManager.py
+├── SQLOwnerManager.py
+├── NotebookMigrator.py
+├── __init__.py
+```
 
-├── base.py                   # Core request logic
-
-├── notebook_owner_manager.py # Manages notebook ownership
-
-├── sql_owner_manager.py      # Manages query/dashboard/alert ownership
-
-├── notebook_migrator.py      # Manages notebook copying/migration
-
-├── token_refresher.py        # Manages token rotation and secret updates
-
-└── __init__.py               # Easy import entry point
-
-
-
-
-
---
-
-
+---
 
 ## 🛠️ Usage
+
+```python
 from databricks_utils import NotebookOwnerManager, TokenRefresher
 
-# Initialize API client
+# Initialize with your Databricks instance and PAT token
 manager = NotebookOwnerManager("https://your-databricks-instance", token="abc123")
+manager.transfer_ownership("/Users/alice/my_notebook")
 
-# Change notebook owner
-manager.owner_change_method("/Users/alice/my_notebook")
-
-# Refresh expiring tokens
 refresher = TokenRefresher("https://your-databricks-instance", token="abc123")
-refresher.renew_secrets()
+refresher.refresh_expiring_tokens()
+```
 
+---
 
+## 📦 Installation
 
---
+```bash
+pip install -e .
+```
+or use locally:
 
+```python
+import sys
+sys.path.append("/your/path/to/databricks_utils")
+```
 
+---
+
+## 🔧 Requirements
+
+- `requests`
+- `datetime`
+
+---
+
+> 📢 This project is intended for internal automation and educational use.
