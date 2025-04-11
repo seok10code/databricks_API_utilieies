@@ -1,3 +1,19 @@
+# API BASE
+"""
+CLASS NAME: AppAPIBase  
+DESCRIPTION: Azure AD App 등록 정보를 조회하고, Client Secret의 만료 여부를 확인하기 위한 API 호출 클래스  
+"""
+
+import base64
+import requests
+import json
+import os
+from pyspark.sql.functions import *
+from pyspark.sql.types import *
+from datetime import datetime, timedelta, timezone
+from dateutil import parser
+
+
 class AppAPIBase():
     """
     CONSTRUCTOR  
@@ -62,11 +78,3 @@ class AppAPIBase():
             end_time = parser.parse(secret['endDateTime'])
             days_left = (end_time - now).days
             print(f"Secret: {display_name} | 만료까지: {days_left}일")
-
-
-# API BASE
-"""
-CLASS NAME: AccountAPIBase  
-DESCRIPTION: Databricks 계정 레벨에서 사용하는 API 호출을 위한 기반 클래스  
-INHERITS: AppAPIBase
-"""
