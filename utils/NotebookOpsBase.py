@@ -1,3 +1,13 @@
+"""
+CLASS NAME: NotebookOpsBase  
+DESCRIPTION:  
+Databricks Workspace에서 노트북을 다루는 기본 작업들을 모은 베이스 클래스입니다.  
+디렉토리 생성, 노트북 Export/Import, 삭제, 목록 조회 등 공통 기능을 제공합니다.  
+다른 클래스에서 상속하여 재사용됩니다.
+
+INHERITS: DatabricksAPIBase
+"""
+
 class NotebookOpsBase(DatabricksAPIBase):
     """
     METHOD NAME: createDirectory  
@@ -79,11 +89,3 @@ class NotebookOpsBase(DatabricksAPIBase):
         result = spark.createDataFrame(file_list)
         display(result)
         return result
-
-
-# 노트북 오너 변경
-"""
-CLASS NAME: NotebookOwnerManager  
-DESCRIPTION: Databricks 노트북의 백업, 복사, 삭제, 오너 변경 등의 기능을 수행하는 클래스  
-INHERITS: NotebookOpsBase
-"""
