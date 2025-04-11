@@ -1,3 +1,10 @@
+# API BASE
+"""
+CLASS NAME: AccountAPIBase  
+DESCRIPTION: Databricks 계정 레벨에서 사용하는 API 호출을 위한 기반 클래스  
+INHERITS: AppAPIBase
+"""
+
 class AccountAPIBase(AppAPIBase):
     """
     CONSTRUCTOR  
@@ -98,10 +105,3 @@ class AccountAPIBase(AppAPIBase):
         except requests.exceptions.RequestException as e:
             print(f"PATCH 오류: {e}")
             return None
-
-
-"""
-CLASS NAME: AccountManager  
-DESCRIPTION: Databricks 계정 사용자 및 그룹 관리 기능을 제공하는 클래스  
-INHERITS: AccountAPIBase
-"""
