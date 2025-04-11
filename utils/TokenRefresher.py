@@ -1,3 +1,10 @@
+# Key vault 토큰 관리
+"""
+CLASS NAME: TokenRefresher  
+DESCRIPTION: Databricks API를 통해 토큰 및 Secret Scope 관리, 만료 예정 토큰 자동 갱신 기능을 제공  
+INHERITS: DatabricksAPIBase
+"""
+
 class TokenRefresher(DatabricksAPIBase):
 
     """
@@ -165,19 +172,3 @@ class TokenRefresher(DatabricksAPIBase):
         display(df_result)
 
         return df_result
-
-
-# API BASE
-"""
-CLASS NAME: AppAPIBase  
-DESCRIPTION: Azure AD App 등록 정보를 조회하고, Client Secret의 만료 여부를 확인하기 위한 API 호출 클래스  
-"""
-
-import base64
-import requests
-import json
-import os
-from pyspark.sql.functions import *
-from pyspark.sql.types import *
-from datetime import datetime, timedelta, timezone
-from dateutil import parser
