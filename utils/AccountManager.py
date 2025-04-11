@@ -1,3 +1,9 @@
+"""
+CLASS NAME: AccountManager  
+DESCRIPTION: Databricks 계정 사용자 및 그룹 관리 기능을 제공하는 클래스  
+INHERITS: AccountAPIBase
+"""
+
 class AccountManager(AccountAPIBase):
     """
     CONSTRUCTOR  
@@ -163,17 +169,3 @@ class AccountManager(AccountAPIBase):
         df_result = df2.join(df1, df2.id == df1.value, "left_outer")
 
         return df_result
-
-
-# main
-if __name__ == "__main__":
-    DATABRICKS_INSTANCE = "https://adb-1717497422236143.3.azuredatabricks.net"
-    TOKEN = dbutils.secrets.get(scope="utils_admin_scope", key="admin_secret") #오너가 될 주체가 토큰을 발급받아야함
-
-    api = TokenRefresher(databricks_instance=DATABRICKS_INSTANCE, token=TOKEN)
-
-    token_info = api.listTokens()
-    token_comments = [token['comment'] for token in token_info if isinstance(token, dict)] if token_info else []
-
-    if 'admin_secret' not in token_comments:
-        api.addSecret("utils_admin_scope", "admin_secret", api.createToken("admin_secret"))
