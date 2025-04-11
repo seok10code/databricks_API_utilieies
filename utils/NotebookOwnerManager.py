@@ -1,3 +1,10 @@
+# 노트북 오너 변경
+"""
+CLASS NAME: NotebookOwnerManager  
+DESCRIPTION: Databricks 노트북의 백업, 복사, 삭제, 오너 변경 등의 기능을 수행하는 클래스  
+INHERITS: NotebookOpsBase
+"""
+
 class NotebookOwnerManager(NotebookOpsBase):
     """
     METHOD NAME: createBackup  
@@ -72,10 +79,3 @@ class NotebookOwnerManager(NotebookOpsBase):
             else:
                 print("복구 실패: 백업 파일이 존재하지 않음.")
             return None
-
-# 쿼리, 알림, 대쉬보드 오너 변경
-"""
-CLASS NAME: SQLOwnerManager  
-DESCRIPTION: Databricks SQL의 쿼리, 알림, 대시보드에 대한 오너(owner) 변경 및 목록 조회 기능을 담당하는 클래스  
-INHERITS: DatabricksAPIBase
-"""
