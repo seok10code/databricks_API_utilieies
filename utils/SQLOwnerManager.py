@@ -1,3 +1,10 @@
+# 쿼리, 알림, 대쉬보드 오너 변경
+"""
+CLASS NAME: SQLOwnerManager  
+DESCRIPTION: Databricks SQL의 쿼리, 알림, 대시보드에 대한 오너(owner) 변경 및 목록 조회 기능을 담당하는 클래스  
+INHERITS: DatabricksAPIBase
+"""
+
 class SQLOwnerManager(DatabricksAPIBase):
 
     """
@@ -170,12 +177,3 @@ class SQLOwnerManager(DatabricksAPIBase):
             else:
                 print(f"[실패] {object_type_key} {object_id}")
         return True
-
-
-# 디렉토리 아래 존재하는 노트북 전체 복사 (폴더 트리 반영)
-"""
-CLASS NAME: NotebookMigrator  
-DESCRIPTION: Databricks Workspace의 디렉토리 구조와 노트북을 전체 복사(migration)하는 기능을 수행
-
-INHERITS: NotebookOpsBase
-"""
